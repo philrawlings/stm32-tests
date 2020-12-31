@@ -1,0 +1,48 @@
+17:18:22 **** Incremental Build of configuration Debug for project BluePill_Test ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DUSE_HAL_DRIVER -DSTM32F103xB -DDEBUG -c -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'HAL_I2C_ClearBusyFlagErrata_2_14_7':
+../Core/Src/main.c:73:5: warning: implicit declaration of function 'HAL_GPIO_WRITE_ODR'; did you mean 'HAL_GPIO_WritePin'? [-Wimplicit-function-declaration]
+     HAL_GPIO_WRITE_ODR(GPIOB, SDA_PIN);
+     ^~~~~~~~~~~~~~~~~~
+     HAL_GPIO_WritePin
+../Core/Src/main.c: At top level:
+../Core/Src/main.c:151:6: warning: conflicting types for 'HAL_GPIO_WRITE_ODR'
+ void HAL_GPIO_WRITE_ODR(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin)
+      ^~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:73:5: note: previous implicit declaration of 'HAL_GPIO_WRITE_ODR' was here
+     HAL_GPIO_WRITE_ODR(GPIOB, SDA_PIN);
+     ^~~~~~~~~~~~~~~~~~
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:228:25: warning: unused variable 'state' [-Wunused-variable]
+    HAL_I2C_StateTypeDef state = HAL_I2C_GetState(&hi2c1);
+                         ^~~~~
+../Core/Src/main.c:227:24: warning: unused variable 'mode' [-Wunused-variable]
+    HAL_I2C_ModeTypeDef mode = HAL_I2C_GetMode(&hi2c1);
+                        ^~~~
+../Core/Src/main.c:174:11: warning: variable 'i2cError' set but not used [-Wunused-but-set-variable]
+  uint32_t i2cError;
+           ^~~~~~~~
+../Core/Src/main.c:173:20: warning: variable 'ret' set but not used [-Wunused-but-set-variable]
+  HAL_StatusTypeDef ret;
+                    ^~~
+arm-none-eabi-gcc -o "BluePill_Test.elf" @"objects.list"   -mcpu=cortex-m3 -T"C:\Users\prawlings\STM32CubeIDE\workspace_1.3.0\BluePill_Test\STM32F103C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="BluePill_Test.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: BluePill_Test.elf
+ 
+arm-none-eabi-objdump -h -S  BluePill_Test.elf  > "BluePill_Test.list"
+arm-none-eabi-objcopy  -O ihex  BluePill_Test.elf  "BluePill_Test.hex"
+arm-none-eabi-objcopy  -O binary  BluePill_Test.elf  "BluePill_Test.bin"
+arm-none-eabi-size   BluePill_Test.elf 
+   text	   data	    bss	    dec	    hex	filename
+   9164	     20	   1652	  10836	   2a54	BluePill_Test.elf
+Finished building: default.size.stdout
+ 
+Finished building: BluePill_Test.hex
+Finished building: BluePill_Test.bin
+Finished building: BluePill_Test.list
+ 
+ 
+ 
+
+17:18:23 Build Finished. 0 errors, 6 warnings. (took 1s.395ms)
+
